@@ -41,7 +41,7 @@ const About = () => {
   useEffect (() => {
     callAboutPage();
   }, 
-  );
+  []);
 
 
   return (

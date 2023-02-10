@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Contact = () => {
 
@@ -148,7 +148,7 @@ const Contact = () => {
             <div className='contact_form_container py-5'>
               <div className='contact_form_title'>
               Get In Touch </div>
-              <form id='contact_form' method='GET'>
+              <form method='POST' id='contact_form'>
                 <div className='contact_form_name d-flex justify-content-between align-item-between'>
                   <input type="text" id='contact_form_name'
                   className='contact_form_name input_field'

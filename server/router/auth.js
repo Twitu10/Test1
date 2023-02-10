@@ -95,18 +95,18 @@ router.post('/login', async (req, res) => {
 // about us page
 
 router.get('/about', authenticate, (req, res) => {
-    console.log('Hello my About');
+    console.log(`Hello my About`);
     res.send(req.rootUser);
 });
 
 // get user data for contact us and home page
 router.get('/getdata', authenticate, (req, res) => {
-    console.log('Get Data');
+    console.log(`Get Data`);
     res.send(req.rootUser);  
 });
 
 // contact us page
-router.get('/contact', authenticate, async (req, res) => {
+router.post('/contact', authenticate, async (req, res) => {
     try {
         const {name, email, phone, message} = req.body;
 
@@ -120,10 +120,23 @@ router.get('/contact', authenticate, async (req, res) => {
         if (userContact) {
 
             const userMessage = await userContact.addMessage(name, email, phone, message);
+
+            await userContact.save();
+
+            res.status(201).json({ message: "User Contact Successfully" });
         }
     } catch (error) {
         console.log(error);
     }
 });
+
+// logout page
+
+router.get('/logout', (req, res) => {
+    console.log(`Hello my Logout Page`);
+    res.clearCookie('jwtoken', { path:'/' });
+    res.status(200).send('User Logout');
+});
+
 
 module.exports = router;

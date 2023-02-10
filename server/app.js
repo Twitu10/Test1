@@ -42,9 +42,9 @@ app.get('/signup', (req, res) => {
     res.send('Registration');
 });
 
-//app.get('/login', (req, res) => {
- //   res.send('Login');
-//});
+app.get('/login', (req, res) => {
+    res.send('Login');
+});
 
 
 app.listen(PORT, () => {
